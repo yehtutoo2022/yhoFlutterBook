@@ -1,0 +1,66 @@
+//**************************************************//
+                // *** START ***//
+              // Flutter Book //
+//**************************************************//
+
+import 'package:flutter/material.dart';
+
+class TimePicker_Output extends StatefulWidget {
+  const TimePicker_Output({super.key});
+
+  @override
+  State<TimePicker_Output> createState() => _TimePicker_OutputState();
+}
+
+class _TimePicker_OutputState extends State<TimePicker_Output> {
+  //Create TimeofDay  variable
+  TimeOfDay _timeOfDay = const TimeOfDay(hour: 0, minute: 0);
+
+  //show time picker method
+  void _showTimepicker(){
+    showTimePicker(
+      context: context,
+      initialTime: TimeOfDay.now(),
+    ).then((value) {
+      setState(() {
+        _timeOfDay = value!;
+      });
+    });
+  }
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      // backgroundColor: Colors.grey,
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            //display the chosen time
+            Text(
+              _timeOfDay.format(context).toString(),
+              style: const TextStyle(fontSize: 40),
+            ),
+
+            //button
+            MaterialButton(
+              onPressed: _showTimepicker,
+              color: Colors.blue,
+              child: const Padding(
+                padding: EdgeInsets.all(20.0),
+                child: Text('PICK TIME',
+                  style: TextStyle(color: Colors.white,fontSize: 30),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+
+//**************************************************//
+                // *** END ***//
+              // Flutter Book //
+//**************************************************//
